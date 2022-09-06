@@ -2,8 +2,7 @@ import numpy as np
 import json
 import os
 
-import burnside_encryption as bse
-import burnside_multplication as bsm
+import resources 
 
 # read multiplication table file
 infile = [np.asarray(json.loads(line)) for line in open(os.path.abspath(os.pardir) + '\z2_s4_001.json', 'r')]
@@ -22,19 +21,19 @@ print("Number of multipliers: {}" .format(len_M))
 
 #print("Multiplier Indices: {}" .format(M))
 
-def run():
+if __name__ == "__main__":
     print('---------------------------------------------------')
     msg = input("Enter your message \n")
     print('---------------------------------------------------')
-    msg_utf = bse.encode_msg(msg) + bse.set_mixer(mixer_index, "123567")
+    msg_utf = resources.encode_msg(msg, len_T) + resources.set_mixer(mixer_index, len_T, "123567")
     print("UTF-8 representation of your message:  \n {}" .format(msg_utf))
-    multiplier = bse.brmult_list(T,M)
-    encryption = bse.brmult_list(T,[msg_utf,multiplier])
+    multiplier = resources.brmult_list(T,M)
+    encryption = resources.brmult_list(T,[msg_utf,multiplier])
     print('---------------------------------------------------')
     print("UTF-8 representation of encrypted message:  \n {}" .format(encryption))
-    decrypt_utf = bse.brmult_list(T,[encryption,multiplier])
+    print('---------------------------------------------------')
+    decrypt_utf = resources.brmult_list(T,[encryption,multiplier])
+    print("UTF-8 representation of decrypted message:  \n {}" .format(decrypt_utf))
     #decrypt = np.char.decode(np.string_(decrypt_utf),'utf-8')
     print('---------------------------------------------------')
     #print("Your decrypted message:  \n {}" .format(decrypt))
-
-run()

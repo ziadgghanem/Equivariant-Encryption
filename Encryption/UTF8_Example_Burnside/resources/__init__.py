@@ -1,0 +1,2 @@
+from resources.burnside_encryption import set_mixer, encode_msg
+from resources.burnside_multplication import brmult_list
