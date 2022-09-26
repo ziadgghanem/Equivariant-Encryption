@@ -5,7 +5,7 @@ import os
 import resources 
 
 # read multiplication table file
-infile = [np.asarray(json.loads(line)) for line in open(os.path.abspath(os.pardir) + '\z2_s4_001.json', 'r')]
+infile = [np.asarray(json.loads(line)) for line in open(os.path.abspath(os.pardir) + '/z2_s4_001.json', 'r')]
 mixer_index = infile[0]
 M = infile[1] #multipliers
 T = infile[2] #multiplication table
